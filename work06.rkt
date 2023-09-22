@@ -16,4 +16,5 @@
    (remainder (quotient integer 10) 10)))
 
 (define getNthDigit
-  (lambda (integer)
+  (lambda (n digit)
+    (remainder (quotient n (expt 10 (- digit 1))) 10)))
