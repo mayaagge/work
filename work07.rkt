@@ -12,5 +12,5 @@
     (or (= (expt c 2) (+ (expt a 2) (expt b 2))) (= (expt b 2) (+ (expt a 2) (expt c 2))) (= (expt a 2) (+ (expt c 2) (expt b 2))))))
 
 (define exor
-  (lambda (true false)
-    (not (or true false))))
+  (lambda (a b)
+    (and (or a b) (not(and a b)))))
