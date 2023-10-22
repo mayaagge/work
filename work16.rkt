@@ -1,4 +1,11 @@
 #lang racket
+(define g (build-list 5 (lambda (x) (random 10))))
+g
+
+(define f
+  (lambda (x)
+    (expt x 2)))
+
 (define countDown
   (lambda (n)
     (if (= n 0)
@@ -7,8 +14,6 @@
 (countDown 5)
 
 
-(define g (build-list 5 (lambda (x) (random 10))))
-g
 (define doublify
   (lambda (a)
     (if (null? a)
@@ -17,17 +22,13 @@ g
 (doublify g)
 
 
-(define f
-  (lambda (x)
-    (expt x 2)))
-
-
 (define myMap
   (lambda (c d)
     (if (null? d)
         (list)
         (cons (c (first d)) (myMap c (rest d))))))
 (myMap f g)
+
 
 (define reverse-build-list
   (lambda (j k)
