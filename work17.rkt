@@ -8,7 +8,7 @@ g
         0
         (if (= a 0)
             (first b)
-            (getNth 0 (rest b))))))
+            (getNth (- a 1) (rest b))))))
 (getNth 5 g)
 
 (define getRandomValue
