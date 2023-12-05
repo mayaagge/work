@@ -3,7 +3,13 @@ to setup
 end
 
 to setupEqual
-  ask patches [set pcolor random (3) * 10 + 5]
+  ca
+  ask n-of 363 patches
+  [set pcolor gray]
+  ask n-of 363 patches with [pcolor = black]
+  [set pcolor red]
+  ask n-of 363 patches with [pcolor = black]
+  [set pcolor orange]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
