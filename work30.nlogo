@@ -1,4 +1,3 @@
-
 to setup
   ca
   reset-ticks
@@ -23,6 +22,20 @@ to setup
     wait 0.1
     tick
   ]
+end
+
+to colorSwap
+  wait .1
+  ask patches
+  [
+    let a patches
+    if neighborsOnly
+    [
+      set a neighbors
+    ]
+    set pcolor [pcolor] of one-of a
+  ]
+  tick
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -125,6 +138,34 @@ PENS
 "pen-11" 1.0 0 -8630108 true "" "plot count patches with [pcolor = 115]"
 "pen-12" 1.0 0 -5825686 true "" "plot count patches with [pcolor = 125]"
 "pen-13" 1.0 0 -2064490 true "" "plot count patches with [pcolor = 135]"
+
+SWITCH
+36
+41
+185
+74
+neighborsOnly
+neighborsOnly
+0
+1
+-1000
+
+BUTTON
+67
+425
+162
+458
+NIL
+colorSwap
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
