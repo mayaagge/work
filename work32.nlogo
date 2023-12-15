@@ -1,15 +1,6 @@
-to horizontal
-  if pycor mod 2 = 0
-  [
-    set pcolor random 140
-  ]
-end
-
-to setup
-  ca
-end
-
+;2
 to horiz
+  ca
   ask patches with [pxcor = 0] [set pcolor random 140]
   ask patches [set pcolor [pcolor] of patch 0 pycor]
 end
@@ -18,6 +9,70 @@ end
 to house
   ca
   crt 1
+  [
+    pd
+    set heading 0
+    repeat 4
+    [
+      fd 5
+      rt 90
+    ]
+    fd 5
+    rt 30
+    fd 5
+    rt 120
+    fd 5
+  ]
+end
+
+;23
+to whitep
+  ca
+  ask patches with [(pxcor mod 2 = 0) and (pycor mod 2 = 0)]
+  [
+    set pcolor white
+  ]
+end
+
+;27
+to trapColors
+  ca
+  ask patches
+  [if abs pycor < corRange and abs pxcor < corRange
+  [
+    set pcolor (random colors) * 10 + 5
+  ]]
+end
+
+;22
+to stripe
+  ca
+  ask patches
+  [
+    ifelse pycor mod 2 = 0
+    [
+      set pcolor blue
+    ]
+    [
+      set pcolor red
+    ]
+  ]
+end
+
+;39
+to DoubleRandom
+  ca
+  ask patches
+  [
+    set pcolor random 140
+  ]
+  wait .5
+
+  ask patches
+
+  [
+    set pcolor [pcolor] of patch (random pxcor) (random pycor)]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -63,17 +118,115 @@ NIL
 NIL
 1
 
-BUTTON
-100
-158
-202
-191
+SLIDER
+86
+145
+258
+178
+corRange
+corRange
+1
+17
+10.0
+1
+1
 NIL
-horizontal
+HORIZONTAL
+
+SLIDER
+81
+205
+253
+238
+colors
+colors
+1
+14
+50.0
+1
+1
+NIL
+HORIZONTAL
+
+BUTTON
+74
+268
+170
+301
+NIL
+trapcolors
 NIL
 1
 T
-PATCH
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+94
+346
+166
+379
+NIL
+whitep
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+67
+28
+137
+61
+NIL
+house
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+62
+419
+129
+452
+NIL
+stripe
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+0
+108
+125
+141
+NIL
+doubleRandom
+T
+1
+T
+OBSERVER
 NIL
 NIL
 NIL
