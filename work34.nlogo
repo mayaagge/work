@@ -10,18 +10,57 @@ to setup
 end
 
 to wiggle
-  set turtle 0 yellow
-  ask turtle 0
-  [fd 1
-  rt 360
+  fd 1
+  rt random 45 - random 45
 end
 
-;to push0
+to push0
+  ask turtle 0
+  [
+    wiggle
+    if (any? other turtles-here)
+      [ask other turtles-here
+        [
+          fd 10
+          set color green
+        ]
+    ]
+  ]
+  wait waitTime
+end
 
 
-;to push1
+to push1
+  ask turtle 0
+  [
+    wiggle
+    if (any? other turtles in-radius radius)
+    [
+      ask other turtles in-radius radius
+      [
+        fd 10
+        set color green
+      ]
+    ]
+  ]
+  wait waitTime
+end
 
-;to push2
+to push2
+  ask turtle 0
+  [
+    wiggle
+    if (any? other turtles in-cone radius degrees)
+    [
+      ask other turtles in-cone radius degrees
+      [
+        fd 10
+        set color green
+      ]
+    ]
+  ]
+  wait waitTime
+end
 
 
 
@@ -65,6 +104,102 @@ BUTTON
 NIL
 setup
 NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SLIDER
+46
+137
+218
+170
+waitTime
+waitTime
+0
+1
+0.1
+.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+48
+186
+220
+219
+radius
+radius
+0
+10
+10.0
+.5
+1
+NIL
+HORIZONTAL
+
+SLIDER
+54
+245
+226
+278
+degrees
+degrees
+0
+360
+50.0
+1
+1
+NIL
+HORIZONTAL
+
+BUTTON
+43
+305
+114
+338
+NIL
+push0
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+57
+363
+128
+396
+NIL
+push1
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+64
+409
+135
+442
+NIL
+push2
+T
 1
 T
 OBSERVER
