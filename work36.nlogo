@@ -14,18 +14,50 @@ to setup
     setxy random-xcor random-ycor
   ]
   reset-ticks
-  [set heat 50]
+  ask patches
+  [set heat 50 setPcolor]
 end
 
 to wiggle
-  rt 45
-  lt 45
+  rt random 45
+  lt random 45
   fd 1
 end
 
 to go
   wait .05
   ask turtles [wiggle]
+  ask heater
+  [
+    if heat < 10
+    [die]
+    set heat heat + 20
+  ]
+  ask cooler
+  [
+    if heat > 90
+    [die]
+    set heat heat - 20
+  ]
+  diffuse heat diffusionRate
+  ask patches
+  [
+    setPcolor
+    if heat < 0
+    [
+      set heat 0
+    ]
+    if heat > 100
+    [
+      set heat 100
+    ]
+  ]
+    tick
+end
+
+to setPcolor
+  set pcolor scale-color orange heat 0 100
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -124,7 +156,7 @@ MONITOR
 124
 313
 NIL
-count heaters
+count heater
 1
 1
 11
@@ -135,7 +167,7 @@ MONITOR
 122
 382
 NIL
-count coolers
+count cooler
 1
 1
 11
